@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
+	<title>BioVis Lab 4</title>
+    <svg class="chart"></svg>
+	<script type="text/javascript">
+    
+    var base = d3.select("#vis");
+    var chart = base.append("canvas").attr("width", 400).attr("height", 300);
+
+    var svgContainer = d3.select("body").append("svg")
+    .attr("width", 400)
+    .attr("height", 300);
+
+    var C1 = "green";
+    var C2 = "blue";
+
+    var potato = true;
+
+    var rectangle = svgContainer.append("rect")
+                .on("click", function (d) {
+                    if (potato == true) {
+                        d3.select(this).attr("x", 400 / 3)
+                                       .attr("y", 100)
+                                       .attr("width", 400 / 3)
+                                       .attr("height", 100)
+                                       .style("fill", C2);
+                        d3.select("text").text("Click again!").attr("x", 163);
+                    }
+                    if (potato == false) {
+                        d3.select(this).attr("x", 100)
+                                      .attr("y", 75)
+                                    .attr("width", 200)
+                                   .attr("height", 150)
+                                  .style("fill", C1);
+                        d3.select("text").text("Click me!").attr("x", 170);
+                    }
+                    potato = !potato;
+                })
+                .attr("x", 100)
+                .attr("y", 75)
+                .attr("width", 200)
+                .attr("height", 150)
+                .style("fill", C1);
+
+     var text = svgContainer.append("text").text("Click Me!")
+                .attr("x", 170)
+                .attr("y", 150)
+                .attr("fill", "black");      
+    </script>
+</head>
+<body>
+</body>
+</html>
